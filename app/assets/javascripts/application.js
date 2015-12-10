@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.cookie
+//= require waypoints.min
+//= require modernizr
+//= require bootstrap-hover-dropdown
+//= require owl.carousel.min
+//= require front

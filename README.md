@@ -3,6 +3,8 @@
 ## History
 newest first
 
+* Add bootstrap e-commerce template
+
 * Add subcategories to Category
 
 * Generate Category model
@@ -16,3 +18,6 @@ newest first
 
 ### Associations:
 1. [Self Joins](http://guides.rubyonrails.org/association_basics.html#self-joins)
+
+### Bootstrap template
+[OBAJU E-COMMERCE TEMPLATE](http://bootstrapious.com/p/obaju-e-commerce-template)
