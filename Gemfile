@@ -38,6 +38,8 @@ gem 'activeadmin', '~> 1.0.0.pre2'
 # auth
 gem 'devise', '~> 3.5', '>= 3.5.2'
 
+# Todo: for future use with categories if needed
+# gem 'ancestry', '~> 2.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
