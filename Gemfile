@@ -68,4 +68,7 @@ end
 group :production do
   gem 'unicorn', '~> 5.0', '>= 5.0.1'
   gem 'unicorn-worker-killer', '~> 0.4.4'
+  gem 'rails_12factor'
 end
+
+ruby '2.2.3'

@@ -1,7 +1,10 @@
 # Shop
+[Live preview](https://blooming-fjord-2829.herokuapp.com/)
 
 ## History
 newest first
+
+* Init heroku
 
 * Add bootstrap e-commerce template
 
@@ -21,3 +24,6 @@ newest first
 
 ### Bootstrap template
 [OBAJU E-COMMERCE TEMPLATE](http://bootstrapious.com/p/obaju-e-commerce-template)
+
+### Instructions
+* [Getting Started with Rails 4.x on Heroku](https://devcenter.heroku.com/articles/getting-started-with-rails4)
