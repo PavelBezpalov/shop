@@ -4,6 +4,8 @@
 ## History
 newest first
 
+* Add full template
+
 * Init heroku
 
 * Add bootstrap e-commerce template

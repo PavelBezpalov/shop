@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -37,6 +37,9 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'activeadmin', '~> 1.0.0.pre2'
 # auth
 gem 'devise', '~> 3.5', '>= 3.5.2'
+
+# Todo: static pages, remove in future
+gem 'high_voltage', '~> 2.4.0'
 
 # Todo: for future use with categories if needed
 # gem 'ancestry', '~> 2.1'

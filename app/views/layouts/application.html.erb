@@ -2,13 +2,55 @@
 <html>
 <head>
   <title>Shop</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<!-- *** TOPBAR ***
+_________________________________________________________ -->
+<%= render partial: 'layouts/topbar' %>
 
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<!-- *** TOP BAR END *** -->
+
+<!-- *** NAVBAR ***
+_________________________________________________________ -->
+
+<%= render partial: 'layouts/navbar' %>
+
+<!-- *** NAVBAR END *** -->
+
+
+<div id="all">
+
+  <div id="content">
+
+    <%= yield %>
+
+  </div>
+  <!-- /#content -->
+
+  <!-- *** FOOTER ***
+  _________________________________________________________ -->
+
+  <%= render partial: 'layouts/footer' %>
+
+  <!-- *** FOOTER END *** -->
+
+
+  <!-- *** COPYRIGHT ***
+  _________________________________________________________ -->
+
+  <%= render partial: 'layouts/copyright' %>
+
+  <!-- *** COPYRIGHT END *** -->
+
+
+</div>
+<!-- /#all -->
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+<%= yield :custom_js %>
+
 </body>
 </html>
