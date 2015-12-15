@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/422' => 'errors#unprocessable_entity'
   get '/500' => 'errors#internal_server_error'
 
+  resources :categories, only: :show
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
