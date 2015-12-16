@@ -3,8 +3,8 @@
     <div class="navbar-header">
 
       <a class="navbar-brand home" href="<%= page_path('index') %>" data-animate-hover="bounce">
-        <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-        <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+        <img src="/img/logo.png" alt="Obaju logo" class="hidden-xs">
+        <img src="/img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
       </a>
 
       <div class="navbar-buttons">
@@ -30,83 +30,39 @@
         <li class="active"><a href="<%= page_path('index') %>">Home</a>
         </li>
         <% parent_categories.each do |category| %>
-        <li class="dropdown yamm-fw">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
-            <%= category.title %>
-            <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li>
-              <div class="yamm-content">
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h5>Clothing</h5>
-                    <ul>
-                      <li><a href="<%= page_path('category') %>">T-shirts</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Shirts</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Pants</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Accessories</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-3">
-                    <h5>Shoes</h5>
-                    <ul>
-                      <li><a href="<%= page_path('category') %>">Trainers</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Sandals</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Hiking shoes</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Casual</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-3">
-                    <h5>Accessories</h5>
-                    <ul>
-                      <li><a href="<%= page_path('category') %>">Trainers</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Sandals</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Hiking shoes</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Casual</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Hiking shoes</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Casual</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-3">
-                    <h5>Featured</h5>
-                    <ul>
-                      <li><a href="<%= page_path('category') %>">Trainers</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Sandals</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Hiking shoes</a>
-                      </li>
-                    </ul>
-                    <h5>Looks and trends</h5>
-                    <ul>
-                      <li><a href="<%= page_path('category') %>">Trainers</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Sandals</a>
-                      </li>
-                      <li><a href="<%= page_path('category') %>">Hiking shoes</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <!-- /.yamm-content -->
+            <% if category.subcategories.count > 0 %>
+                <li class="dropdown yamm-fw">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
+                    <%= category.title %>
+                    <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <div class="yamm-content">
+                        <div class="row">
+                          <% category.subcategories.order(:position).each do |subcategory| %>
+                              <div class="col-sm-3">
+                                <h5><%= subcategory.title %></h5>
+                                <% unless subcategory.subcategories.empty? %>
+                                    <ul>
+                                      <% subcategory.subcategories.order(:position).each do |thirdsubcategory| %>
+                                          <li>
+                                            <%= link_to thirdsubcategory.title, thirdsubcategory %>
+                                          </li>
+                                      <% end %>
+                                    </ul>
+                                <% end %>
+                              </div>
+                          <% end %>
+                        </div>
+                      </div>
+                      <!-- /.yamm-content -->
+                    </li>
+                  </ul>
+            <% else %>
+                <li><%= link_to category.title, category %></li>
+            <% end %>
+
             </li>
-          </ul>
-        </li>
         <% end %>
 
         <li class="dropdown yamm-fw">
@@ -121,31 +77,41 @@
                     <ul>
                       <li><a href="<%= page_path('index') %>">Homepage</a>
                       </li>
-                      <li><a href="<%= page_path('category') %>">Category - sidebar left</a>
-                      </li>
-                      <li><a href="<%= page_path('category-right') %>">Category - sidebar
-                        right</a>
+                      <li><a href="<%= page_path('category') %>">Category -
+                        sidebar left</a>
                       </li>
                       <li>
-                        <a href="<%= page_path('category-full') %>">Category - full width</a>
+                        <a href="<%= page_path('category-right') %>">Category -
+                          sidebar
+                          right</a>
                       </li>
-                      <li><a href="<%= page_path('detail') %>">Product detail</a>
+                      <li>
+                        <a href="<%= page_path('category-full') %>">Category -
+                          full width</a>
+                      </li>
+                      <li>
+                        <a href="<%= page_path('detail') %>">Product detail</a>
                       </li>
                     </ul>
                   </div>
                   <div class="col-sm-3">
                     <h5>User</h5>
                     <ul>
-                      <li><a href="<%= page_path('register') %>">Register / login</a>
+                      <li><a href="<%= page_path('register') %>">Register /
+                        login</a>
                       </li>
-                      <li><a href="<%= page_path('customer-orders') %>">Orders history</a>
+                      <li><a href="<%= page_path('customer-orders') %>">Orders
+                        history</a>
                       </li>
                       <li>
-                        <a href="<%= page_path('customer-order') %>">Order history detail</a>
+                        <a href="<%= page_path('customer-order') %>">Order
+                          history detail</a>
                       </li>
-                      <li><a href="<%= page_path('customer-wishlist') %>">Wishlist</a>
+                      <li>
+                        <a href="<%= page_path('customer-wishlist') %>">Wishlist</a>
                       </li>
-                      <li><a href="<%= page_path('customer-account') %>">Customer account /
+                      <li><a href="<%= page_path('customer-account') %>">Customer
+                        account /
                         change password</a>
                       </li>
                     </ul>
@@ -153,15 +119,24 @@
                   <div class="col-sm-3">
                     <h5>Order process</h5>
                     <ul>
-                      <li><a href="<%= page_path('basket') %>">Shopping cart</a>
+                      <li>
+                        <a href="<%= page_path('basket') %>">Shopping cart</a>
                       </li>
-                      <li><a href="<%= page_path('checkout1') %>">Checkout - step 1</a>
+                      <li>
+                        <a href="<%= page_path('checkout1') %>">Checkout - step
+                          1</a>
                       </li>
-                      <li><a href="<%= page_path('checkout2') %>">Checkout - step 2</a>
+                      <li>
+                        <a href="<%= page_path('checkout2') %>">Checkout - step
+                          2</a>
                       </li>
-                      <li><a href="<%= page_path('checkout3') %>">Checkout - step 3</a>
+                      <li>
+                        <a href="<%= page_path('checkout3') %>">Checkout - step
+                          3</a>
                       </li>
-                      <li><a href="<%= page_path('checkout4') %>">Checkout - step 4</a>
+                      <li>
+                        <a href="<%= page_path('checkout4') %>">Checkout - step
+                          4</a>
                       </li>
                     </ul>
                   </div>
@@ -177,7 +152,8 @@
                       <li><a href="<%= page_path('text') %>">Text page</a>
                       </li>
                       <li>
-                        <a href="<%= page_path('text-right') %>">Text page - right sidebar</a>
+                        <a href="<%= page_path('text-right') %>">Text page -
+                          right sidebar</a>
                       </li>
                       <li><a href="<%= page_path('404') %>">404 page</a>
                       </li>
