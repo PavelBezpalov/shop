@@ -38,7 +38,7 @@ gem 'activeadmin', '~> 1.0.0.pre2'
 # auth
 gem 'devise', '~> 3.5', '>= 3.5.2'
 
-# Todo: static pages, remove in future
+# Todo: static pages, remove in future or not :)
 gem 'high_voltage', '~> 2.4.0'
 
 # Todo: for future use with categories if needed

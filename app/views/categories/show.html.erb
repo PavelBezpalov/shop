@@ -5,7 +5,19 @@
     <ul class="breadcrumb">
       <li><a href="#">Home</a>
       </li>
-      <li>Ladies</li>
+      <% if @category.parent_category %>
+          <% if @category.parent_category.parent_category %>
+              <li>
+                <%= link_to @category.parent_category.parent_category.title, @category.parent_category.parent_category %>
+              </li>
+          <% end %>
+          <li>
+            <%= link_to @category.parent_category.title, @category.parent_category %>
+          </li>
+      <% end %>
+      <li>
+        <%= link_to @category.title, @category %>
+      </li>
     </ul>
 
     <div class="box">
@@ -47,360 +59,74 @@
         </div>
       </div>
     </div>
+    <% if @category.products.count > 0 %>
+        <div class="row products">
+          <% @category.products.each do |product| %>
+              <div class="col-md-3 col-sm-4">
+                <div class="product">
+                  <div class="flip-container">
+                    <div class="flipper">
+                      <div class="front">
+                        <a href="<%= category_product_path(@category, product) %>">
+                          <img src="/img/product2.jpg" alt="" class="img-responsive">
+                        </a>
+                      </div>
+                      <div class="back">
+                        <a href="<%= category_product_path(@category, product) %>">
+                          <img src="/img/product2_2.jpg" alt="" class="img-responsive">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="<%= category_product_path(@category, product) %>" class="invisible">
+                    <img src="/img/product2.jpg" alt="" class="img-responsive">
+                  </a>
 
-    <div class="row products">
+                  <div class="text">
+                    <h3>
+                      <%= link_to product.title, category_product_path(@category, product) %>
+                    </h3>
 
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product1.jpg" alt="" class="img-responsive">
-                </a>
+                    <p class="price">
+                      <del>$280</del>
+                      <%= number_to_currency(product.price) %>
+                    </p>
+                    <p class="buttons">
+                      <a href="<%= category_product_path(@category, product) %>" class="btn btn-default">View
+                        detail</a>
+                      <a href="<%= category_product_path(@category, product) %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
+                        to cart</a>
+                    </p>
+                  </div>
+                  <!-- /.text -->
+
+                  <div class="ribbon sale">
+                    <div class="theribbon">SALE</div>
+                    <div class="ribbon-background"></div>
+                  </div>
+                  <!-- /.ribbon -->
+
+                  <div class="ribbon new">
+                    <div class="theribbon">NEW</div>
+                    <div class="ribbon-background"></div>
+                  </div>
+                  <!-- /.ribbon -->
+
+                  <div class="ribbon gift">
+                    <div class="theribbon">GIFT</div>
+                    <div class="ribbon-background"></div>
+                  </div>
+                  <!-- /.ribbon -->
+                </div>
+                <!-- /.product -->
               </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product1_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product1.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">Fur coat with very but very very long
-              name</a></h3>
-
-            <p class="price">$143.00</p>
-
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-          </div>
-          <!-- /.text -->
-        </div>
-        <!-- /.product -->
-      </div>
-
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product2_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product2.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">White Blouse Armani</a></h3>
-
-            <p class="price">
-              <del>$280</del>
-              $143.00
-            </p>
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-          </div>
-          <!-- /.text -->
-
-          <div class="ribbon sale">
-            <div class="theribbon">SALE</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
-
-          <div class="ribbon new">
-            <div class="theribbon">NEW</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
-
-          <div class="ribbon gift">
-            <div class="theribbon">GIFT</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
-        </div>
-        <!-- /.product -->
-      </div>
-
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product3.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product3_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product3.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">Black Blouse Versace</a></h3>
-
-            <p class="price">$143.00</p>
-
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-
-          </div>
-          <!-- /.text -->
-        </div>
-        <!-- /.product -->
-      </div>
-
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product3.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product3_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product3.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">Black Blouse Versace</a></h3>
-
-            <p class="price">$143.00</p>
-
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-
-          </div>
-          <!-- /.text -->
-        </div>
-        <!-- /.product -->
-      </div>
-
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product2_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product2.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">White Blouse Versace</a></h3>
-
-            <p class="price">$143.00</p>
-
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-
-          </div>
-          <!-- /.text -->
-
-          <div class="ribbon new">
-            <div class="theribbon">NEW</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
-        </div>
-        <!-- /.product -->
-      </div>
-
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product1.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product1_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product1.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">Fur coat</a></h3>
-
-            <p class="price">$143.00</p>
-
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-
-          </div>
-          <!-- /.text -->
-
-          <div class="ribbon gift">
-            <div class="theribbon">GIFT</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
+          <% end %>
 
         </div>
-        <!-- /.product -->
-      </div>
-      <!-- /.col-md-4 -->
-
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product2_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product2.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">White Blouse Armani</a></h3>
-
-            <p class="price">
-              <del>$280</del>
-              $143.00
-            </p>
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-          </div>
-          <!-- /.text -->
-
-          <div class="ribbon sale">
-            <div class="theribbon">SALE</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
-
-          <div class="ribbon new">
-            <div class="theribbon">NEW</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
-
-          <div class="ribbon gift">
-            <div class="theribbon">GIFT</div>
-            <div class="ribbon-background"></div>
-          </div>
-          <!-- /.ribbon -->
-        </div>
-        <!-- /.product -->
-      </div>
-
-      <div class="col-md-3 col-sm-4">
-        <div class="product">
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product3.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-              <div class="back">
-                <a href="<%= page_path('detail') %>">
-                  <img src="/img/product3_2.jpg" alt="" class="img-responsive">
-                </a>
-              </div>
-            </div>
-          </div>
-          <a href="<%= page_path('detail') %>" class="invisible">
-            <img src="/img/product3.jpg" alt="" class="img-responsive">
-          </a>
-
-          <div class="text">
-            <h3><a href="<%= page_path('detail') %>">Black Blouse Versace</a></h3>
-
-            <p class="price">$143.00</p>
-
-            <p class="buttons">
-              <a href="<%= page_path('detail') %>" class="btn btn-default">View detail</a>
-              <a href="<%= page_path('basket') %>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-                to cart</a>
-            </p>
-
-          </div>
-          <!-- /.text -->
-        </div>
-        <!-- /.product -->
-      </div>
-
-    </div>
-    <!-- /.products -->
-
+        <!-- /.products -->
+    <% else %>
+        <h5>No products yet in this category.</h5>
+    <% end %>
     <div class="pages">
 
       <p class="loadMore">

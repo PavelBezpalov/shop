@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'products/index'
+
+  get 'products/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get '/404' => 'errors#not_found'
   get '/422' => 'errors#unprocessable_entity'
   get '/500' => 'errors#internal_server_error'
 
-  resources :categories, only: :show
+  resources :categories, only: :show do
+    resources :products, only: :show
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
